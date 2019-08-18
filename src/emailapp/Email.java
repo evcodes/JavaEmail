@@ -8,6 +8,8 @@ public class Email {
 	private String lastName;
 	private String alternateEmail;
 	private String department;
+	
+	private final int DEFAULT_PASS_LENGTH = 14;
 	int mailboxCapacity;
 
 	//Constructor
@@ -19,8 +21,12 @@ public class Email {
 
 		// ask for the department and return it
 		setDepartment();
-
 		System.out.println(this.department);
+		
+		this.password = randomPw(DEFAULT_PASS_LENGTH);
+		System.out.println("Your secret password: " + this.password);
+
+		
 	}
 	// department getter
 	protected String getDepartment() {
@@ -79,6 +85,19 @@ public class Email {
 	}
 
 	//random pw generator
+	private String randomPw(int length) {
+		String pw = "";
+		
+		//ASCII Values relevant to typeable keys
+		int max = 127;
+		int min = 33;
+		
+		int range = max-min+1;
+		for(int i =0; i< length; i++) {
+			pw += (char)( (Math.random() * range) + min);
+ 		}
+		return pw;
+	}
 
 	// set mailbox capacity
 
